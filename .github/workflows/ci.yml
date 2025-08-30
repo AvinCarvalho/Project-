@@ -1,0 +1,16 @@
+name: CI Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Hello World
+        run: echo "🎉 GitHub Actions is working, Eesho Boss!"
+
+      - name: Print today’s date
+        run: date
