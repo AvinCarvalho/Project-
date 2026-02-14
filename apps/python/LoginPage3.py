@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 🎨 Apply custom CSS for style
+
 st.markdown("""
     <style>
     html, body, [class*="css"]  {
@@ -34,17 +34,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 🧱 HTML wrapper for styled box
+
 st.markdown('<div class="login-box">', unsafe_allow_html=True)
 
-# 🔐 Title + Input fields
+
 st.markdown("### 🔐 Dynamic Login")
 st.write("Enter your username and password")
 
 username = st.text_input("Username", placeholder="Enter your username")
 password = st.text_input("Password", type="password", placeholder="Enter your password")
 
-# ✅ Login Logic
 if st.button("Login"):
     if not username or not password:
         st.warning("⚠️ Please fill in all fields!")
@@ -53,5 +52,4 @@ if st.button("Login"):
     else:
         st.error("❌ Invalid credentials!")
 
-# Close the styled box
 st.markdown("</div>", unsafe_allow_html=True)

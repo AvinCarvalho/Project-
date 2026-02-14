@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eesho | DevOps & QA Portfolio (v1)</title>
+
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+  
+    :root {
+      --bg: #0b0c10;          
+      --text: #e8eaf0;         
+      --muted: #a9b0c0;        
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+      --accent: #19e3ff;       
+      --accent-2: #6a79ff;     
+      --shadow: 0 20px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    body.light {
+      --bg: #f9fafc;
+      --text: #11131a;
+      --muted: #5b6270;
+      --card: rgba(0,0,0,0.05);
+      --border: rgba(0,0,0,0.08);
+      --accent: #ff2e7e;       /* hot pink */
+      --accent-2: #675cff;     /* violet */
+      --shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Utility */
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    .panel { min-height: 100vh; display: grid; align-items: center; padding: 80px 0; }
+    .grid { display: grid; gap: 22px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+    }
+    .chip { display: inline-block; padding: 6px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+    .muted { color: var(--muted); }
+
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0a0a0a; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 12px 24px rgba(25,227,255,0.25); transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.03); box-shadow: 0 16px 34px rgba(25,227,255,0.35); }
+    .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); box-shadow: none; }
+
+   
+    .nav {
+      position: fixed; inset: 18px 18px auto; z-index: 50; display: flex; gap: 10px; align-items: center; justify-content: space-between; pointer-events: none;
+    }
+    .nav-inner { pointer-events: auto; display: flex; gap: 8px; }
+    .nav a { padding: 10px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-weight: 600; }
+    .nav a:hover { color: var(--text); }
+    #theme-toggle { padding: 10px 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); cursor: pointer; color: var(--text); }
+
+    .hero {
+      position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(25,227,255,0.14), transparent 60%),
+                  radial-gradient(1200px 600px at 90% 110%, rgba(106,121,255,0.12), transparent 60%);
+    }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.1; margin: 0 0 12px; }
+    .hero p { font-size: clamp(1.05rem, 2.8vw, 1.3rem); }
+    .orb {
+      position: absolute; inset: auto -120px -120px auto; width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent-2), transparent 60%);
+      filter: blur(24px); opacity: .55; pointer-events: none;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    @keyframes float { from { transform: translateY(0) rotate(0deg);} to { transform: translateY(-12px) rotate(10deg);} }
+
+    
+    .steps { display: grid; gap: 14px; }
+    .step { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+    .icon {
+      width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #081018; font-weight: 900;
+      box-shadow: 0 8px 18px rgba(25,227,255,0.35);
+    }
+
+   
+    .project { display: grid; gap: 12px; }
+    .project h4 { margin: 0; }
+    .project .links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+   
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
+  </style>
+</head>
+<body>
+ 
+  <div class="nav container" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#lifecycle">DevOps Cycle</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#blog">Notes</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-inner">
+      <button id="theme-toggle" aria-label="Toggle dark/light">🌙</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header id="home" class="panel hero" data-aos="zoom-in">
+    <div class="container">
+      <div class="grid grid-2" style="align-items:center;">
+        <div>
+          <span class="chip" data-aos="fade-right" data-aos-delay="150">QA ➜ DevOps • Cloud • CI/CD</span>
+          <h1 data-aos="fade-up" data-aos-delay="250">Hey, I’m <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Eesho</span></h1>
+          <p class="muted" data-aos="fade-up" data-aos-delay="350">DevOps Engineer</p>
+          <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;" data-aos="fade-up" data-aos-delay="450">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn ghost" href="#contact">Contact</a>
+          </div>
+        </div>
+        <div data-aos="fade-left" data-aos-delay="250">
+          <div class="card" style="padding:28px; text-align:center;">
+            <!-- Decorative inline SVG (guaranteed to load) -->
+            <svg width="100%" height="180" viewBox="0 0 600 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="var(--accent)"/>
+                  <stop offset="100%" stop-color="var(--accent-2)"/>
+                </linearGradient>
+              </defs>
+              <path d="M10 120 C 120 40, 240 160, 360 80 S 540 140, 590 60" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <g>
+                <circle cx="120" cy="40" r="6" fill="var(--accent)"/>
+                <circle cx="360" cy="80" r="6" fill="var(--accent-2)"/>
+                <circle cx="540" cy="140" r="6" fill="var(--accent)"/>
+              </g>
+            </svg>
+            <p class="muted" style="margin:10px 0 0;">Futuristic, image-free hero graphic (inline SVG).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="orb"></div>
+  </header>
+
+ 
+  <section id="about" class="panel" data-aos="fade-up">
+    <div class="container grid grid-2">
+      <div class="card" data-aos="fade-right">
+        <h2>About / Mission</h2>
+        <p class="muted">I started in QA and expanded into DevOps to ship faster with confidence. My focus: clean pipelines, reliable releases, and pragmatic automation. This site will grow as I do — expect real projects, write-ups, and infra diagrams.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip">Manual & API Testing</span>
+          <span class="chip">Selenium • JMeter</span>
+          <span class="chip">GitHub Actions</span>
+          <span class="chip">Docker • AWS</span>
+        </div>
+      </div>
+      <div class="card" data-aos="fade-left">
+        <h3>Timeline</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="icon">QA</div>
+            <div>
+              <h4>QA Foundations</h4>
+              <p class="muted">Mobile/Web testing, API testing, JMeter performance.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="icon">CI</div>
+            <div>
+              <h4>CI/CD</h4>
+              <p class="muted">Automated checks with GitHub Actions, artifacts, environments.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="icon">DX</div>
+            <div>
+              <h4>DevOps</h4>
+              <p class="muted">Containerization, reproducible builds, cloud basics on AWS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="lifecycle" class="panel" data-aos="fade-up">
+    <div class="container card" style="padding:32px;">
+      <h2>DevOps Lifecycle</h2>
+      <p class="muted">Plan → Code → Build → Test → Release → Deploy → Operate → Monitor. Below is a compact view of how I like to wire things:</p>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon">SCM</div>
+          <h4>Source Control</h4>
+          <p class="muted">Git strategy, PR checks, protected branches.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="150">
+          <div class="icon">CI</div>
+          <h4>CI</h4>
+          <p class="muted">Build, unit tests, lint, SCA in GitHub Actions.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon">CT</div>
+          <h4>Containers</h4>
+          <p class="muted">Docker images, multi-stage builds, SBOMs.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="250">
+          <div class="icon">CD</div>
+          <h4>CD</h4>
+          <p class="muted">Preview envs, environments, manual gates.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon">OPS</div>
+          <h4>Ops</h4>
+          <p class="muted">Logging/metrics, health checks, auto-rollback.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="350">
+          <div class="icon">OBS</div>
+          <h4>Observability</h4>
+          <p class="muted">Dashboards, alerts, SLOs, incident notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="skills" class="panel" data-aos="fade-up">
+    <div class="container">
+      <h2>Skills Matrix</h2>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <div class="card" data-aos="zoom-in"><h4>Languages</h4><p class="muted">Python, Bash</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="100"><h4>DevOps</h4><p class="muted">Git, GitHub Actions, Docker</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="200"><h4>Cloud</h4><p class="muted">AWS basics (S3, EC2)</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="300"><h4>Testing</h4><p class="muted">Selenium, JMeter, API testing</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="400"><h4>Practices</h4><p class="muted">CI/CD, IaC (intro), GitOps (intro)</p></div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="500"><h4>Soft</h4><p class="muted">Docs, collaboration, problem solving</p></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="projects" class="panel" data-aos="fade-up">
+    <div class="container">
+      <h2>Projects</h2>
+      <p class="muted">Real repos & live demos will be added as I complete training. For now, structure is ready.</p>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <div class="card project" data-aos="fade-up" data-aos-delay="100">
+          <h4>CI/CD Pipeline</h4>
+          <p class="muted">GitHub Actions workflow with tests and deploy to Pages.</p>
+          <div class="links">
+            <a class="btn ghost" href="#">GitHub</a>
+            <a class="btn" href="#">Live</a>
+          </div>
+        </div>
+        <div class="card project" data-aos="fade-up" data-aos-delay="150">
+          <h4>Dockerized App</h4>
+          <p class="muted">Sample Python app with Docker multi-stage build.</p>
+          <div class="links">
+            <a class="btn ghost" href="#">GitHub</a>
+            <a class="btn" href="#">Live</a>
+          </div>
+        </div>
+        <div class="card project" data-aos="fade-up" data-aos-delay="200">
+          <h4>AWS Mini Infra</h4>
+          <p class="muted">Static hosting on S3 + versioned artifacts.</p>
+          <div class="links">
+            <a class="btn ghost" href="#">GitHub</a>
+            <a class="btn" href="#">Live</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="achievements" class="panel" data-aos="fade-up">
+    <div class="container grid grid-2">
+      <div class="card" data-aos="fade-right">
+        <h2>Experience & Achievements</h2>
+        <ul class="muted">
+          <li>QA across iOS, Android, Web</li>
+          <li>Performance tests with JMeter</li>
+          <li>Basic CI/CD with GitHub Actions</li>
+          <li>Dockerizing apps for consistency</li>
+        </ul>
+      </div>
+      <div class="card" data-aos="fade-left">
+        <h3>Certifications (planned)</h3>
+        <ul class="muted">
+          <li>AWS Cloud Practitioner</li>
+          <li>Docker Associate (future)</li>
+          <li>CKA (future)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="blog" class="panel" data-aos="fade-up">
+    <div class="container card" style="padding:28px;">
+      <h2>Notes / Write-ups</h2>
+      <p class="muted">Short posts I’ll add as I learn. Helps recruiters see my thinking.</p>
+      <div class="grid">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h4>GitHub Actions: Quick Start</h4>
+          <p class="muted">Triggers, jobs, runners, artifacts, and Pages deployment.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="150">
+          <h4>Docker 101</h4>
+          <p class="muted">Images vs containers, multi-stage builds, caching.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <h4>Testing Pyramid</h4>
+          <p class="muted">Unit, integration, E2E balance for fast, safe delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="panel" data-aos="fade-up">
+    <div class="container grid grid-2">
+      <div class="card" data-aos="fade-right">
+        <h2>Contact</h2>
+        <p class="muted">Open to opportunities & collaborations. Ping me — I reply fast.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn" href="mailto:youremail@example.com">Email</a>
+          <a class="btn ghost" href="https://github.com/yourgithub" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn ghost" href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn ghost" href="#">Download Resume</a>
+        </div>
+      </div>
+      <div class="card" data-aos="fade-left">
+        <h3>Quick Message</h3>
+        <form onsubmit="event.preventDefault(); alert('Form placeholder – connect to Formspree or Netlify Forms later.');" class="grid">
+          <input aria-label="Your name" placeholder="Your name" required style="padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text);" />
+          <input aria-label="Your email" type="email" placeholder="Email" required style="padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text);" />
+          <textarea aria-label="Message" rows="4" placeholder="Message" required style="padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text);"></textarea>
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <small class="muted">© 2025 Eesho. Built with HTML + AOS. Deployed via GitHub Pages.</small>
+    </div>
+  </footer>
+
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once: true, offset: 100 });
+
+    // Theme toggle with localStorage
+    const toggle = document.getElementById('theme-toggle');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const saved = localStorage.getItem('theme');
+    if ((saved === 'light') || (!saved && prefersLight)) {
+      document.body.classList.add('light');
+      toggle.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const light = document.body.classList.contains('light');
+      toggle.textContent = light ? '☀️' : '🌙';
+      localStorage.setItem('theme', light ? 'light' : 'dark');
+    });
+
+    
+    document.querySelectorAll('.nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const yOffset = -60; 
+          const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

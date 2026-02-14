@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eesho Futuristic Site</title>
   <style>
-    /* Global Styles */
+    
     :root {
       --bg: #0f0f0f;
       --text: #fff;
@@ -22,7 +22,7 @@
       transition: background 0.4s, color 0.4s;
     }
 
-    /* Dark Mode */
+    
     body.dark {
       --bg: #f0f0f0;
       --text: #111;
@@ -31,7 +31,7 @@
       --hover: #ff0077;
     }
 
-    /* Dark Mode Toggle */
+    
     #theme-toggle {
       position: fixed;
       top: 15px;
@@ -46,7 +46,7 @@
     }
     #theme-toggle:hover { transform: scale(1.2); }
 
-    /* Hero Section */
+    
     .hero {
       text-align: center;
       padding: 100px 20px;
@@ -71,7 +71,7 @@
       box-shadow: 0 0 15px var(--accent);
     }
 
-    /* Kinetic Typography */
+    
     .kinetic {
       font-size: 2.5rem;
       animation: glow 2s infinite alternate;
@@ -84,7 +84,7 @@
       to { text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent); }
     }
 
-    /* Bento Grid */
+ 
     .bento {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -103,7 +103,7 @@
       outline: none;
     }
 
-    /* Footer */
+  
     footer {
       text-align: center;
       padding: 20px;
@@ -111,7 +111,7 @@
       margin-top: 40px;
     }
 
-    /* Mobile Responsive */
+    
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.8rem; }
       .bento { padding: 20px; }
@@ -119,17 +119,17 @@
   </style>
 </head>
 <body>
-  <!-- Dark mode toggle -->
+  
   <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 
-  <!-- Hero Section -->
+
   <header class="hero">
     <h1 class="kinetic">Welcome to <span>Eesho’s</span> World</h1>
     <p>Minimal • Futuristic • Responsive</p>
     <a href="#grid" class="cta">🚀 Get Started</a>
   </header>
 
-  <!-- Bento Box Grid Section -->
+  
   <main id="grid" class="bento">
     <section class="card" tabindex="0">
       <h2>💻 Projects</h2>
@@ -153,7 +153,7 @@
     <p>© 2025 Eesho. Built with 💻 + ⚡</p>
   </footer>
 
-  <!-- Dark mode toggle JS -->
+ 
   <script>
     const toggle = document.getElementById("theme-toggle");
     toggle.addEventListener("click", () => {
